@@ -1,0 +1,81 @@
+{
+  "tests": [
+    {
+      "name": "Compilation of a code",
+      "run": "mvn -B --quiet clean compile",
+      "output": "",
+      "comparison": "exact",
+      "points": 5
+    },
+    {
+      "name": "Argument validation - ''",
+      "run": "java -cp target/classes efs.task.syntax.GuessNumberGame",
+      "output": "NIEPOPRAWNY ARGUMENT",
+      "comparison": "included",
+      "points": 3
+    },
+    {
+      "name": "Argument validation - 'abc'",
+      "run": "java -cp target/classes efs.task.syntax.GuessNumberGame abc",
+      "output": "NIEPOPRAWNY ARGUMENT",
+      "comparison": "included",
+      "points": 3
+    },
+    {
+      "name": "Argument validation - '0'",
+      "run": "java -cp target/classes efs.task.syntax.GuessNumberGame 0",
+      "output": "NIEPOPRAWNY ARGUMENT",
+      "comparison": "included",
+      "points": 3
+    },
+    {
+      "name": "Argument validation - '-1'",
+      "run": "java -cp target/classes efs.task.syntax.GuessNumberGame -1",
+      "output": "NIEPOPRAWNY ARGUMENT",
+      "comparison": "included",
+      "points": 3
+    },
+    {
+      "name": "Argument validation - '401'",
+      "run": "java -cp target/classes efs.task.syntax.GuessNumberGame 401",
+      "output": "NIEPOPRAWNY ARGUMENT",
+      "comparison": "included",
+      "points": 3
+    },
+    {
+      "name": "Check if entered text is a number",
+      "run": "mvn -B --quiet -Dtest=efs.task.syntax.GuessNumberGameTest#shouldPrintNotNumberMessage test",
+      "output": "",
+      "comparison": "exact",
+      "points": 10
+    },
+    {
+      "name": "Check if entered number is correct",
+      "run": "mvn -B --quiet -Dtest=efs.task.syntax.GuessNumberGameTest#shouldPrintYesMessage test",
+      "output": "",
+      "comparison": "exact",
+      "points": 10
+    },
+    {
+      "name": "Check if entered number is to big",
+      "run": "mvn -B --quiet -Dtest=efs.task.syntax.GuessNumberGameTest#shouldPrintToMuchMessage test",
+      "output": "",
+      "comparison": "exact",
+      "points": 10
+    },
+    {
+      "name": "Check if entered number is to small",
+      "run": "mvn -B --quiet -Dtest=efs.task.syntax.GuessNumberGameTest#shouldPrintToLessMessage test",
+      "output": "",
+      "comparison": "exact",
+      "points": 10
+    },
+    {
+      "name": "Check if generated progress bars are correct",
+      "run": "mvn -B --quiet -Dtest=efs.task.syntax.GuessNumberGameProgressBarTest test",
+      "output": "",
+      "comparison": "exact",
+      "points": 40
+    }
+  ]
+}

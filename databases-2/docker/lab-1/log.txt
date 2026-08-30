@@ -1,0 +1,199 @@
+[mattfor@ZenDen ~]$ docker pull mysql:8.0
+8.0: Pulling from library/mysql
+edf85873f64e: Already exists 
+6ef6c7b50a93: Pull complete 
+e3e5d1ac74c1: Pull complete 
+0d74d296605b: Pull complete 
+297d04cfe470: Pull complete 
+4c8a3e0d4e4b: Pull complete 
+a63160a5eda1: Pull complete 
+7534d1db9f8d: Pull complete 
+49ec2dab01d9: Pull complete 
+ab24264a27e9: Pull complete 
+96d30d9fbee8: Pull complete 
+Digest: sha256:7dcddc01f13bab2f15cde676d44d01f61fc9f99fe7785e86196dfc07d358ae2b
+Status: Downloaded newer image for mysql:8.0
+docker.io/library/mysql:8.0
+[mattfor@ZenDen ~]$ docker pull alpine:latest
+latest: Pulling from library/alpine
+Digest: sha256:5b10f432ef3da1b8d4c7eb6c487f2f5a8f096bc91145e68878dd4a5019afde11
+Status: Image is up to date for alpine:latest
+docker.io/library/alpine:latest
+[mattfor@ZenDen ~]$ docker network create labnetwork
+4b8100548327eba9cec9fe9aaee9e178cd77996a058db72e35f3bc35fc9a08a3
+[mattfor@ZenDen ~]$ docker run -d --name db --network labnetwork -e MYSQL_ROOT_PASSWORD=root -p 3307:3306 mysql:8.0
+8b7bcbd018688fd6f149a2387380ff709ff0ad4800de1330492773f5f89214ad
+[mattfor@ZenDen ~]$ docker logs -f db
+2026-05-08 10:22:57+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+2026-05-08 10:22:57+00:00 [Note] [Entrypoint]: Switching to dedicated user 'mysql'
+2026-05-08 10:22:57+00:00 [Note] [Entrypoint]: Entrypoint script for MySQL Server 8.0.46-1.el9 started.
+2026-05-08 10:22:57+00:00 [Note] [Entrypoint]: Initializing database files
+2026-05-08T10:22:57.405941Z 0 [Warning] [MY-010139] [Server] Changed limits: max_open_files: 4096 (requested 8161)
+2026-05-08T10:22:57.405944Z 0 [Warning] [MY-010142] [Server] Changed limits: table_open_cache: 1967 (requested 4000)
+2026-05-08T10:22:57.406869Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-05-08T10:22:57.406967Z 0 [System] [MY-013169] [Server] /usr/sbin/mysqld (mysqld 8.0.46) initializing of server in progress as process 80
+2026-05-08T10:22:57.415528Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-05-08T10:22:57.606711Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-05-08T10:22:58.146216Z 6 [Warning] [MY-010453] [Server] root@localhost is created with an empty password ! Please consider switching off the --initialize-insecure option.
+2026-05-08 10:22:59+00:00 [Note] [Entrypoint]: Database files initialized
+2026-05-08 10:22:59+00:00 [Note] [Entrypoint]: Starting temporary server
+2026-05-08T10:22:59.774063Z 0 [Warning] [MY-010139] [Server] Changed limits: max_open_files: 4096 (requested 8161)
+2026-05-08T10:22:59.774065Z 0 [Warning] [MY-010142] [Server] Changed limits: table_open_cache: 1967 (requested 4000)
+2026-05-08T10:23:00.004468Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-05-08T10:23:00.005891Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.46) starting as process 124
+2026-05-08T10:23:00.026679Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-05-08T10:23:00.124570Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-05-08T10:23:00.277788Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-05-08T10:23:00.277809Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-05-08T10:23:00.278987Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-05-08T10:23:00.287765Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Socket: /var/run/mysqld/mysqlx.sock
+2026-05-08T10:23:00.287811Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.46'  socket: '/var/run/mysqld/mysqld.sock'  port: 0  MySQL Community Server - GPL.
+2026-05-08 10:23:00+00:00 [Note] [Entrypoint]: Temporary server started.
+'/var/lib/mysql/mysql.sock' -> '/var/run/mysqld/mysqld.sock'
+Warning: Unable to load '/usr/share/zoneinfo/iso3166.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leap-seconds.list' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/leapseconds' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/tzdata.zi' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone.tab' as time zone. Skipping it.
+Warning: Unable to load '/usr/share/zoneinfo/zone1970.tab' as time zone. Skipping it.
+
+2026-05-08 10:23:01+00:00 [Note] [Entrypoint]: Stopping temporary server
+2026-05-08T10:23:01.203016Z 10 [System] [MY-013172] [Server] Received SHUTDOWN from user root. Shutting down mysqld (Version: 8.0.46).
+2026-05-08T10:23:02.813555Z 0 [System] [MY-010910] [Server] /usr/sbin/mysqld: Shutdown complete (mysqld 8.0.46)  MySQL Community Server - GPL.
+2026-05-08 10:23:03+00:00 [Note] [Entrypoint]: Temporary server stopped
+
+2026-05-08 10:23:03+00:00 [Note] [Entrypoint]: MySQL init process done. Ready for start up.
+
+2026-05-08T10:23:03.213300Z 0 [Warning] [MY-010139] [Server] Changed limits: max_open_files: 4096 (requested 8161)
+2026-05-08T10:23:03.213305Z 0 [Warning] [MY-010142] [Server] Changed limits: table_open_cache: 1967 (requested 4000)
+2026-05-08T10:23:03.440329Z 0 [Warning] [MY-011068] [Server] The syntax '--skip-host-cache' is deprecated and will be removed in a future release. Please use SET GLOBAL host_cache_size=0 instead.
+2026-05-08T10:23:03.441834Z 0 [System] [MY-010116] [Server] /usr/sbin/mysqld (mysqld 8.0.46) starting as process 1
+2026-05-08T10:23:03.450171Z 1 [System] [MY-013576] [InnoDB] InnoDB initialization has started.
+2026-05-08T10:23:03.544590Z 1 [System] [MY-013577] [InnoDB] InnoDB initialization has ended.
+2026-05-08T10:23:03.681213Z 0 [Warning] [MY-010068] [Server] CA certificate ca.pem is self signed.
+2026-05-08T10:23:03.681235Z 0 [System] [MY-013602] [Server] Channel mysql_main configured to support TLS. Encrypted connections are now supported for this channel.
+2026-05-08T10:23:03.682374Z 0 [Warning] [MY-011810] [Server] Insecure configuration for --pid-file: Location '/var/run/mysqld' in the path is accessible to all OS users. Consider choosing a different directory.
+2026-05-08T10:23:03.692388Z 0 [System] [MY-011323] [Server] X Plugin ready for connections. Bind-address: '::' port: 33060, socket: /var/run/mysqld/mysqlx.sock
+2026-05-08T10:23:03.692488Z 0 [System] [MY-010931] [Server] /usr/sbin/mysqld: ready for connections. Version: '8.0.46'  socket: '/var/run/mysqld/mysqld.sock'  port: 3306  MySQL Community Server - GPL.
+^C[mattfor@ZenDen ~]docker exec -it db mysql -uroot -prootot
+mysql: [Warning] Using a password on the command line interface can be insecure.
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 8
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2026, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> CREATE DATABASE studia;
+Query OK, 1 row affected (0.00 sec)
+
+mysql> USE studia;
+Database changed
+mysql> CREATE TABLE studenci (
+    ->     id INT AUTO_INCREMENT PRIMARY KEY,
+    ->     nazwisko VARCHAR(100),
+    ->     numer_albumu VARCHAR(20)
+    -> );
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> INSERT INTO studenci (nazwisko, numer_albumu) VALUES
+    -> ('REDACTED', '155197'),
+    -> ('Kowalski', '234567'),
+    -> ('Nowak', '345678');
+Query OK, 3 rows affected (0.01 sec)
+Records: 3  Duplicates: 0  Warnings: 0
+
+mysql> SELECT * FROM studenci;
++----+----------+--------------+
+| id | nazwisko | numer_albumu |
++----+----------+--------------+
+|  1 | REDACTED   | 155197       |
+|  2 | Kowalski | 234567       |
+|  3 | Nowak    | 345678       |
++----+----------+--------------+
+3 rows in set (0.00 sec)
+
+mysql> CREATE USER 'lab'@'%' IDENTIFIED WITH mysql_native_password BY 'labpass';
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> GRANT ALL PRIVILEGES ON studia.* TO 'lab'@'%';
+Query OK, 0 rows affected (0.01 sec)
+
+mysql> FLUSH PRIVILEGES;
+Query OK, 0 rows affected (0.00 sec)
+
+mysql> exit
+Bye
+[mattfor@ZenDen ~]$ docker inspect -f '{{range.NetworkSettings.Networks}}{{.IPAddress}}{{end}}' db
+172.18.0.2
+[mattfor@ZenDen ~]$ docker run -it --name client --network labnetwork alpine:latest sh
+/ # apk add --no-cache mariadb-client
+(1/6) Installing mariadb-common (11.4.10-r0)
+(2/6) Installing libgcc (15.2.0-r2)
+(3/6) Installing ncurses-terminfo-base (6.5_p20251123-r0)
+(4/6) Installing libncursesw (6.5_p20251123-r0)
+(5/6) Installing libstdc++ (15.2.0-r2)
+(6/6) Installing mariadb-client (11.4.10-r0)
+Executing busybox-1.37.0-r30.trigger
+OK: 49.9 MiB in 22 packages
+/ # mariadb -h 172.18.0.2 -P 3306 -u lab -plabpass --ssl=0
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 9
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> USE studia;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [studia]> SELECT * FROM studenci;
++----+----------+--------------+
+| id | nazwisko | numer_albumu |
++----+----------+--------------+
+|  1 | REDACTED   | 155197       |
+|  2 | Kowalski | 234567       |
+|  3 | Nowak    | 345678       |
++----+----------+--------------+
+3 rows in set (0.000 sec)
+
+MySQL [studia]> exit
+Bye
+/ # ip route | awk '/default/ {print $3}'
+172.18.0.1
+/ # mariadb -h 172.18.0.1 -P 3307 -u lab -plabpass --ssl=0
+Welcome to the MariaDB monitor.  Commands end with ; or \g.
+Your MySQL connection id is 10
+Server version: 8.0.46 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2018, Oracle, MariaDB Corporation Ab and others.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+MySQL [(none)]> USE studia;
+Reading table information for completion of table and column names
+You can turn off this feature to get a quicker startup with -A
+
+Database changed
+MySQL [studia]> SELECT * FROM studenci;
++----+----------+--------------+
+| id | nazwisko | numer_albumu |
++----+----------+--------------+
+|  1 | REDACTED   | 155197       |
+|  2 | Kowalski | 234567       |
+|  3 | Nowak    | 345678       |
++----+----------+--------------+
+3 rows in set (0.000 sec)
+
+MySQL [studia]> exit
+Bye
+/ # exit
+[mattfor@ZenDen ~]$ 

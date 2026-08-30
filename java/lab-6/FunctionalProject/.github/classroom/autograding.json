@@ -1,0 +1,63 @@
+{
+  "tests": [
+    {
+      "name": "code compiles",
+      "setup": "",
+      "run": "mvn -B --quiet compile",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "filtering OK",
+      "run": "mvn -B --quiet -Dtest=efs.task.functional.PeopleProcessorTests#canFilter test",
+      "output": "",
+      "comparison": "included",
+      "points": 10
+    },
+    {
+      "name": "sorting OK",
+      "run": "mvn -B --quiet -Dtest=efs.task.functional.PeopleProcessorTests#canSort test",
+      "output": "",
+      "comparison": "included",
+      "points": 20
+    },
+    {
+      "name": "calculating average OK",
+      "run": "mvn -B --quiet -Dtest=efs.task.functional.PeopleProcessorTests#canCalculateAverage test",
+      "output": "",
+      "comparison": "included",
+      "points": 30
+    },
+    {
+      "name": "can greet in shouting way OK",
+      "run": "mvn -B --quiet -Dtest=efs.task.functional.PersonSpeakersTest#canGreetInShoutingWay test",
+      "output": "",
+      "comparison": "included",
+      "points": 10
+    },
+    {
+      "name": "can greet local PL OK",
+      "run": "mvn -B --quiet -Dtest=efs.task.functional.PersonSpeakersTest#canGreetLocalPL test",
+      "output": "",
+      "comparison": "included",
+      "points": 10
+    },
+    {
+      "name": "can greet local USA OK",
+      "run": "mvn -B --quiet -Dtest=efs.task.functional.PersonSpeakersTest#canGreetLocalUSA test",
+      "output": "",
+      "comparison": "included",
+      "points": 10
+    },
+    {
+      "name": "can greet local DE OK",
+      "run": "mvn -B --quiet -Dtest=efs.task.functional.PersonSpeakersTest#canGreetLocalDE test",
+      "output": "",
+      "comparison": "included",
+      "points": 10
+    }
+  ]
+}

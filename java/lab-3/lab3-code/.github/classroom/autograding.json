@@ -1,0 +1,161 @@
+{
+  "tests": [
+    {
+      "name": "code compiles",
+      "setup": "",
+      "run": "mvn -B --quiet compile",
+      "input": "",
+      "output": "",
+      "comparison": "included",
+      "timeout": 10,
+      "points": 1
+    },
+    {
+      "name": "all printouts are correct",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.MainTest test",
+      "output": "",
+      "comparison": "included",
+      "points": 40
+    },
+    {
+      "name": "monsters are declared correctly",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.MonstersTest test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "monster should have correct fields",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.MonsterTest#shouldHaveCorrectFields test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "monster should implement fighter interface",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.MonsterTest#shouldImplementFighterInterface test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "monster should have correct constructor",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.MonsterTest#shouldHaveCorrectConstructor test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "villager should have correct name",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.VillagerTest#shouldHaveCorrectName test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "villager should have correct fields",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.VillagerTest#shouldHaveCorrectFields test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "villager should have correct constructor",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.VillagerTest#shouldHaveCorrectConstructor test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "villager should print correct text for sayHello() method",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.VillagerTest#shouldPrintCorrectTextForSayHelloMethod test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "villager should construct object with correct health",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.VillagerTest#shouldConstructObjectWithCorrectHealth test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "villager should implement fighter interface",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.VillagerTest#shouldImplementFighterInterface test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "villager should attack with correct damage",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.VillagerTest#shouldAttackWithCorrectDamage test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should have correct name",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldHaveCorrectName test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should be subclass of villager",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldBeSubclassOfVillager test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should contain inner class",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldContainInnerClass test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should contain inner class",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldContainCorrectValuesInInnerClass test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should have skill field",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldHaveSkillField test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should have correct constructor",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldHaveCorrectConstructor test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should print correct text for sayHello() method",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldPrintCorrectTextForSayHelloMethod test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should attack with zero damage",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldAttackWithZeroDamage test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    },
+    {
+      "name": "extraordinary villager should die after one hit",
+      "run": "mvn -B --quiet -Dtest=efs.task.oop.ExtraordinaryVillagerTest#shouldDieAfterOneHit test",
+      "output": "",
+      "comparison": "included",
+      "points": 5
+    }
+  ]
+}

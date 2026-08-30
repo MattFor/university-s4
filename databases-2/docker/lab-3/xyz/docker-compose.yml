@@ -1,0 +1,151 @@
+version: "3.9"
+
+services:
+  mysql:
+    image: mysql:8.4
+    container_name: zadanie5-mysql
+
+    command:
+      [
+        "--default-authentication-plugin=mysql_native_password",
+        "--server-id=1",
+        "--log-bin=mysql-bin",
+        "--binlog-format=ROW"
+      ]
+
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: eventsdb
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+
+    ports:
+      - "3306:3306"
+
+    volumes:
+      - mysql-data:/var/lib/mysql
+      - ./mysql/init:/docker-entrypoint-initdb.d:ro
+      - ./mysql/my.cnf:/etc/mysql/conf.d/my.cnf:ro
+
+    restart: unless-stopped
+
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 20
+
+  web:
+    build: ./web
+    container_name: zadanie5-web
+
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: eventsdb
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+      ACCESS_PASSWORD: secret123
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+    ports:
+      - "8080:8080"
+
+    restart: unless-stopped
+
+  etl:
+    build: ./etl
+    container_name: zadanie5-etl
+
+    environment:
+      MYSQL_HOST: mysql
+      MYSQL_PORT: 3306
+      MYSQL_DB: eventsdb
+      MYSQL_USER: app
+      MYSQL_PASSWORD: app
+
+      MONGO_URI: mongodb://mongo1:27017,mongo2:27017,mongo3:27017/logsdb?replicaSet=rs0
+
+    depends_on:
+      mysql:
+        condition: service_healthy
+
+      mongo1:
+        condition: service_started
+
+      mongo2:
+        condition: service_started
+
+      mongo3:
+        condition: service_started
+
+    restart: unless-stopped
+
+  mongo1:
+    image: mongo:7
+    container_name: mongo1
+
+    command:
+      [
+        "mongod",
+        "--replSet",
+        "rs0",
+        "--bind_ip_all"
+      ]
+
+    ports:
+      - "27017:27017"
+
+    volumes:
+      - mongo1-data:/data/db
+
+    restart: unless-stopped
+
+  mongo2:
+    image: mongo:7
+    container_name: mongo2
+
+    command:
+      [
+        "mongod",
+        "--replSet",
+        "rs0",
+        "--bind_ip_all"
+      ]
+
+    ports:
+      - "27018:27017"
+
+    volumes:
+      - mongo2-data:/data/db
+
+    restart: unless-stopped
+
+  mongo3:
+    image: mongo:7
+    container_name: mongo3
+
+    command:
+      [
+        "mongod",
+        "--replSet",
+        "rs0",
+        "--bind_ip_all"
+      ]
+
+    ports:
+      - "27019:27017"
+
+    volumes:
+      - mongo3-data:/data/db
+
+    restart: unless-stopped
+
+volumes:
+  mysql-data:
+  mongo1-data:
+  mongo2-data:
+  mongo3-data:

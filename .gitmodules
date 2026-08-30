@@ -1,0 +1,9 @@
+[submodule "dotnet"]
+	path = dotnet
+	url = git@github.com:MattFor/university-dotnet.git
+[submodule "numerical-methods"]
+	path = numerical-methods
+	url = git@github.com:MattFor/numerical-methods-labs.git
+[submodule "java/project/OpenGuitar"]
+	path = java/project/OpenGuitar
+	url = git@github.com:Pedritos22/OpenGuitar.git
